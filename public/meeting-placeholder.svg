@@ -1,0 +1,15 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="m" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dfe8ef"/>
+      <stop offset="100%" stop-color="#c6d6e5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#m)"/>
+  <rect x="120" y="620" width="960" height="150" rx="20" fill="#8aa3bb" opacity="0.7"/>
+  <circle cx="390" cy="420" r="110" fill="#355c8c" opacity="0.9"/>
+  <circle cx="760" cy="410" r="110" fill="#2f754f" opacity="0.9"/>
+  <rect x="265" y="520" width="250" height="140" rx="20" fill="#2f4f77" opacity="0.92"/>
+  <rect x="635" y="515" width="250" height="145" rx="20" fill="#2a6946" opacity="0.92"/>
+  <text x="600" y="835" text-anchor="middle" font-family="DM Sans, Arial, sans-serif" font-size="44" fill="#35516f">Temporary Meeting Asset</text>
+</svg>
