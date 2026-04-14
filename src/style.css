@@ -4,13 +4,13 @@
 :root {
 	--font-serif: 'Playfair Display', serif;
 	--font-sans: 'DM Sans', sans-serif;
-	--color-dark: #1a2b2d;
+	--color-dark: #1A3260;
 	--color-gray: #6b7c7e;
 	--color-light-bg: #f7f7f5;
 	--color-green: #c9f29b;
 	
 	/* Implementation5 Global Color Variables */
-	--execor-dark-teal: #0e2b2c;
+	--execor-dark-teal: #071F45;
 	--execor-light-green: #d8f3b9;
 	--execor-bg-white: #ffffff;
 	--execor-bg-light-gray: #f7f7f5;
@@ -77,11 +77,11 @@ h4 {
 }
 
 .card-main-dark {
-	background-color: #143f42;
+	background-color: #071F45;
 	background-image:
 		radial-gradient(circle at 86% 14%, rgba(198, 233, 159, 0.14) 0%, transparent 56%),
 		repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(255, 255, 255, 0.05) 15px, rgba(255, 255, 255, 0.05) 18px),
-		linear-gradient(155deg, #10373a 0%, #1a4f4f 100%);
+		linear-gradient(155deg, #071F45 0%, #1A3260 100%);
 	border-color: rgba(198, 233, 159, 0.18);
 	color: #ffffff;
 	grid-row: span 1;
@@ -111,8 +111,8 @@ h4 {
 }
 
 .btn-contact {
-	background: linear-gradient(180deg, #c6e9a2 0%, #b8dc93 100%);
-	color: #16353b;
+	background: linear-gradient(180deg, #2A4A80 0%, #1A3260 100%);
+	color: #ffffff;
 	border: none;
 	padding: 14px 24px;
 	border-radius: 12px;
@@ -142,13 +142,13 @@ h4 {
 	align-items: flex-start;
 	gap: 12px;
 	font-weight: 500;
-	color: #1a2b2d;
+	color: #1A3260;
 }
 
 .graph-header p {
 	margin: 0;
 	line-height: 1.5;
-	color: #1a2b2d;
+	color: #1A3260;
 }
 
 .close-x {
@@ -183,7 +183,7 @@ h4 {
 	top: -35px;
 	font-size: 1.5rem;
 	font-weight: bold;
-	color: #1a2b2d;
+	color: #1A3260;
 }
 
 .card-white {
@@ -201,6 +201,7 @@ h4 {
 .card-image {
 	border-radius: 14px;
 	overflow: hidden;
+	grid-column: span 2;
 	border: 1px solid #dbe5e8;
 	box-shadow: 0 8px 20px rgba(18, 36, 46, 0.08);
 	transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.32s ease;
@@ -372,8 +373,8 @@ h4 {
 }
 
 .btn-light-green {
-	background: linear-gradient(180deg, #c6e99f 0%, #b8dc93 100%);
-	color: #18373d;
+	background: linear-gradient(180deg, #2A4A80 0%, #1A3260 100%);
+	color: #ffffff;
 	padding: 15px 28px;
 	min-height: 48px;
 	border: none;

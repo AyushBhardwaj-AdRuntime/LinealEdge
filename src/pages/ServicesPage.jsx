@@ -162,7 +162,7 @@ export default function ServicesPage() {
             ))}
           </div>
 
-          <p className="services-trust-strip">Fortune 500 Professionals Trust Execor CPA</p>
+          <p className="services-trust-strip">Fortune 500 Professionals Trust Lineal Edge CPA</p>
         </div>
       </section>
 

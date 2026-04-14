@@ -100,7 +100,14 @@ export default function AboutPage() {
               alt="Modern architecture representing strong foundations"
               className="aboutx-architecture-image"
             />
-            <div className="aboutx-accent-block" />
+            <div className="aboutx-accent-block">
+              <div className="aboutx-accent-top">
+                <span className="aboutx-accent-brand">Lineal Edge</span>
+                <div className="aboutx-accent-big">10+</div>
+                <p className="aboutx-accent-desc">Years of Tradition & Innovation</p>
+              </div>
+              <button type="button" className="aboutx-accent-btn">Contact Us <span className="arrow">&rarr;</span></button>
+            </div>
           </div>
 
           <div className="aboutx-copy-col">
