@@ -123,9 +123,8 @@ function HeroSection() {
         }, 1.8);
       }
 
-      // Phase 2: Shift Logo to the left and fade in the text content
-      // Phase 2: Logo shrinks up, background image reveals, bottom content slides in
-      tl.to('.logo-container', { scale: 0.6, y: -60, opacity: 0, duration: 1.4, ease: 'power3.inOut' }, 2.8)
+      // Phase 2: Logo shifts to the left, background image reveals, bottom content slides in
+      tl.to('.logo-container', { scale: 1.12, x: '-31vw', y: 0, opacity: 1, duration: 1.4, ease: 'power3.inOut' }, 2.8)
         .to('.hero-bg-image', { opacity: 1, scale: 1, duration: 1.8, ease: 'power2.out' }, 2.6)
         .to('.hero-bottom-content', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, 3.2)
         .to('.hero-kpi-overlay', { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' }, 3.5);
@@ -163,59 +162,43 @@ function HeroSection() {
               <BrandLogo markOnly style={{ width: '100%', height: 'auto', overflow: 'visible' }} />
             </div>
           </div>
-
-          <div className="hero-wordmark-wrap" style={{ display: 'flex', justifyContent: 'center', width: '100%', maxWidth: '380px', marginTop: '16px' }}>
-            <BrandWordmark className="hero-wordmark" />
-          </div>
         </div>
       </div>
 
       {/* Bottom content — Lineal Edge style: text left, KPI right */}
       <div className="hero-bottom-content">
+        <div className="hero-logo-spacer" aria-hidden="true" />
         <div className="hero-bottom-left">
-          <h1 style={{ fontSize: 'clamp(2.2rem, 3.5vw, 3.2rem)', lineHeight: '1.15', color: '#ffffff', fontWeight: 300, marginBottom: '28px', fontFamily: "'DM Serif Text', Georgia, serif" }}>
-            Outsourced Accounting,<br/>Bookkeeping, Taxes & Payroll
+          <h1 className="hero-main-title">
+            Built On <span style={{ color: '#39B54A' }}>Generations Of Trust,</span><br/>
+            We Help You <span style={{ color: '#39B54A' }}>Grow</span> And<br/>
+            <span style={{ color: '#39B54A' }}>Protect Your Wealth.</span>
           </h1>
-          <a href="/contact" className="hero-cta-btn inline-arrow-btn" style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '12px',
-            background: '#2A4A80',
-            color: '#ffffff',
-            border: 'none',
-            padding: '16px 32px',
-            borderRadius: '14px',
-            fontWeight: 600,
-            fontSize: '15px',
-            textDecoration: 'none',
-            transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-          }}>
+          <a href="/contact" className="hero-cta-btn hero-cta-primary inline-arrow-btn">
             Schedule a Consultation <span>→</span>
           </a>
         </div>
+      </div>
 
-        <div className="hero-bottom-right">
-          <div className="hero-kpi-overlay hero-kpi-inline kpi-theme-premium" aria-label="Business impact highlights">
-            <div className="hero-kpi-card hero-kpi-card-left">
-              <div className="hero-kpi-top">
-                <h2 className="hero-kpi-value">250%</h2>
-                <p className="hero-kpi-period">annually</p>
-              </div>
-              <h3 className="hero-kpi-label">Average ROI</h3>
+      <div className="hero-bottom-right">
+        <div className="hero-kpi-overlay hero-kpi-inline kpi-theme-premium" aria-label="Business impact highlights">
+          <div className="hero-kpi-card hero-kpi-card-left">
+            <div className="hero-kpi-top">
+              <h2 className="hero-kpi-value">250%</h2>
+              <p className="hero-kpi-period">annually</p>
             </div>
-            <div className="hero-kpi-card hero-kpi-card-right">
-              <div className="hero-kpi-top">
-                <h2 className="hero-kpi-value">28%</h2>
-                <p className="hero-kpi-period">annually</p>
-              </div>
-              <h3 className="hero-kpi-label">Increase revenue</h3>
+            <h3 className="hero-kpi-label">Average ROI</h3>
+          </div>
+          <div className="hero-kpi-card hero-kpi-card-right">
+            <div className="hero-kpi-top">
+              <h2 className="hero-kpi-value">28%</h2>
+              <p className="hero-kpi-period">annually</p>
             </div>
+            <h3 className="hero-kpi-label">Increase revenue</h3>
           </div>
         </div>
       </div>
 
-      <div className="section-connector"><div className="connector-glow" /></div>
-      <div className="phase-transition" />
     </section>
   );
 }
@@ -239,21 +222,29 @@ function ScrollytellingSection() {
         scrollTrigger: {
           trigger: scrollyRef.current,
           start: 'top top',
-          end: '+=2500',
+          end: '+=1800',
           pin: true,
-          scrub: 1,
+          pinSpacing: true,
+          scrub: 0.55,
+          anticipatePin: 1,
+          fastScrollEnd: true,
+          invalidateOnRefresh: true,
           snap: {
-            snapTo: "labelsDirectional",
-            duration: { min: 0.3, max: 0.8 },
-            ease: "power2.inOut"
+            snapTo: 'labelsDirectional',
+            delay: 0.06,
+            duration: { min: 0.22, max: 0.38 },
+            ease: 'power2.out',
+            directional: true,
+            inertia: false
           }
         }
       });
 
       scrollTl
         .addLabel('phase1')
+        // Hold L state on first pin so it doesn't rush past when entering from hero.
+        .to({}, { duration: 0.6 })
         // Transition PHASE 1 -> PHASE 2 (E focused)
-        .addLabel('phase2_start')
         .to('.text-phase1', { opacity: 0, y: -40, autoAlpha: 0, duration: 1, ease: 'power2.inOut' })
         .to('.logo-part-l', { opacity: 0, filter: 'blur(8px)', scale: 1, duration: 1 }, "<")
         .to('.logo-part-e', { opacity: 1, filter: 'blur(0px)', scale: 1.05, duration: 1 }, "<")
@@ -261,7 +252,7 @@ function ScrollytellingSection() {
         .addLabel('phase2')
 
         // Transition PHASE 2 -> PHASE 3 (S focused)
-        .addLabel('phase3_start')
+        .to({}, { duration: 0.2 })
         .to('.text-phase2', { opacity: 0, y: -40, autoAlpha: 0, duration: 1, ease: 'power2.inOut' })
         .to('.logo-part-e', { opacity: 0, filter: 'blur(8px)', scale: 1, duration: 1 }, "<")
         .to('.logo-part-s', { opacity: 1, filter: 'blur(0px)', scale: 1.05, duration: 1 }, "<")
@@ -320,7 +311,7 @@ function ScrollytellingSection() {
               Continuous strategic compounding designed to assure your comfortable life after retirement and family aspirations. Together, we secure the future.
             </p>
             <div className="cta-group" style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-              <a href="https://execor.vamtam.com/free-consultation/" target="_blank" rel="noreferrer" className="cta-primary arrow-hover-cta"><span className="arrow-hover-label">Book a Call</span></a>
+              <a href="https://execor.vamtam.com/free-consultation/" target="_blank" rel="noreferrer" className="cta-primary cta-book-call arrow-hover-cta"><span className="arrow-hover-label">Book a Call</span></a>
               <a href="/services" className="cta-secondary arrow-hover-cta"><span className="arrow-hover-label">View All Services</span></a>
             </div>
           </div>
@@ -622,13 +613,13 @@ function MeetOurLeadersSection() {
           
           <div style={{ display: 'flex', gap: '14px' }}>
             <button className="inline-arrow-btn" style={{ 
-              background: '#2A4A80', 
+              background: '#b4e89a', 
               border: 'none', 
               padding: '14px 28px', 
               borderRadius: '12px', 
               fontWeight: 600, 
               cursor: 'pointer', 
-              color: '#ffffff', 
+              color: '#071F45', 
               fontSize: '15px',
               display: 'flex',
               alignItems: 'center',
@@ -742,8 +733,8 @@ function OurServicesSectionTwo() {
               </h2>
             </div>
             <button className="inline-arrow-btn" style={{
-              background: 'linear-gradient(180deg, #2A4A80 0%, #1A3260 100%)',
-              color: '#ffffff',
+              background: '#b4e89a',
+              color: '#071F45',
               border: 'none',
               padding: '14px 24px',
               borderRadius: '12px',
@@ -880,138 +871,6 @@ function OurServicesSectionTwo() {
 
           {/* Row 2, Col 3 is filled by the graph card spanning 2 rows */}
 
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TestimonialsSection() {
-  const testimonials = [
-    {
-      quote: "Partnering with Lineal Edge has been a game-changer. Their expert accounting support gives me the clarity to focus on strategic growth, confident that our finances are in perfect order.",
-      name: "Jack Wolf",
-      role: "Entrepreneur, Salon Bank",
-      avatar: "/client-jack.svg"
-    },
-    {
-      quote: "Lineal Edge handles my accounting, allowing me to self-evaluate objectively and focus on leadership, team management, and achieving our goals.",
-      name: "Rebbeca Parker",
-      role: "CEO, Forex",
-      avatar: "/client-rebecca.svg"
-    },
-    {
-      quote: "With Lineal Edge managing our accounting, I can dedicate my time to scaling the business and leading my team. Their precision and reliability have made financial management effortless.",
-      name: "Carlos Moya",
-      role: "CEO, TAX Com",
-      avatar: "/client-carlos.svg"
-    }
-  ];
-
-  return (
-    <section style={{ padding: '120px 0', background: '#f7f8f6' }}>
-      <div style={{ maxWidth: '1340px', margin: '0 auto', padding: '0 60px' }}>
-
-        {/* Header Row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '60px', flexWrap: 'wrap', gap: '30px' }}>
-          <div>
-            <span style={{
-              display: 'inline-block',
-              backgroundColor: '#ffffff',
-              padding: '6px 20px',
-              borderRadius: '50vw',
-              fontSize: '13px',
-              fontWeight: 600,
-              color: '#1A3260',
-              marginBottom: '24px',
-              letterSpacing: '0.05em'
-            }}>
-              Testimonials
-            </span>
-            <h2 style={{
-              fontSize: '54px',
-              fontWeight: 400,
-              fontFamily: "'DM Serif Text', Georgia, serif",
-              color: '#1A3260',
-              lineHeight: '1.15',
-              margin: 0
-            }}>
-              Why Our Clients Love to<br/>Work with Us!
-            </h2>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '24px', paddingTop: '20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" style={{ width: '28px', height: '28px' }} />
-              <div>
-                <div style={{ fontSize: '16px', fontWeight: 700, color: '#1A3260' }}>5.0</div>
-                <div style={{ fontSize: '13px', color: 'rgba(23,53,45,0.6)' }}>Google Reviews</div>
-              </div>
-            </div>
-            <button className="inline-arrow-btn" style={{
-              background: '#2A4A80',
-              border: 'none',
-              padding: '14px 28px',
-              borderRadius: '12px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              color: '#ffffff',
-              fontSize: '15px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px'
-            }}>
-              Read All Testimonials <span>→</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Testimonial Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
-          {testimonials.map((t, i) => (
-            <div key={i} style={{
-              background: i === 1 ? '#e8eeea' : '#ffffff',
-              borderRadius: '16px',
-              padding: '40px 30px 30px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              minHeight: '320px',
-              border: '1px solid rgba(23,53,45,0.06)'
-            }}>
-              {/* Quote mark */}
-              <div>
-                <div style={{ fontSize: '48px', lineHeight: '1', color: '#1A3260', fontFamily: 'Georgia, serif', marginBottom: '16px' }}>"</div>
-                <p style={{ fontSize: '16px', lineHeight: '1.65', color: '#1A3260', margin: 0 }}>
-                  "{t.quote}"
-                </p>
-              </div>
-
-              {/* Author */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginTop: '30px' }}>
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', background: '#e0e5e0' }}
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                />
-                <div>
-                  <div style={{ fontSize: '15px', fontWeight: 600, color: '#1A3260' }}>{t.name}</div>
-                  <div style={{ fontSize: '12px', color: '#5a6b6d', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#1A3260', display: 'inline-block' }} />
-                    {t.role}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Carousel dots */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '40px' }}>
-          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#1A3260' }} />
-          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(23,53,45,0.2)' }} />
-          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(23,53,45,0.2)' }} />
         </div>
       </div>
     </section>
@@ -1320,9 +1179,6 @@ export default function HomePage() {
           <MeetOurLeadersSection />
         </div>
         <OurServicesSectionTwo />
-        <TestimonialsSection />
-        <OurBlogSection />
-        <WorksheetsSection />
         <CTASection />
       </div>
       {/* 

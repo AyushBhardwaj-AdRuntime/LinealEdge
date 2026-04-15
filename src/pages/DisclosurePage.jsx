@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
 import SubscribeBand from '../components/SubscribeBand';
+import PageHeader from '../components/PageHeader';
 
 export default function DisclosurePage() {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
     <main className="page-content">
-      <section className="page-hero compact">
-        <div className="page-hero-bg" />
-        <div className="page-hero-inner">
-          <div className="page-label"><div className="label-line" /><span className="label-text">Legal</span></div>
-          <h1 className="page-hero-title">Disclosure</h1>
-        </div>
-      </section>
+      <PageHeader
+        title="Disclosure"
+        description="Important legal and regulatory information regarding our advisory services."
+      />
 
       <section className="content-section">
         <div className="section-inner narrow">

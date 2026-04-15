@@ -5,23 +5,30 @@ export default function Navbar() {
   const navRef = useRef(null);
   const lastScrollYRef = useRef(0);
   const [loginOpen, setLoginOpen] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
+  const [isHeroTransparent, setIsHeroTransparent] = useState(true);
   const dropdownRef = useRef(null);
-  const contactRef = useRef(null);
   const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     setMobileOpen(false);
     setLoginOpen(false);
-    setContactOpen(false);
     setNavHidden(false);
     lastScrollYRef.current = window.scrollY;
-  }, [location]);
+    setIsHeroTransparent(location.pathname === '/');
+
+    if (location.pathname !== '/' && navRef.current) {
+      navRef.current.style.transform = 'translate3d(0px, 0px, 0px)';
+      navRef.current.style.opacity = '1';
+      navRef.current.style.pointerEvents = 'auto';
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     let ticking = false;
+    const isHome = location.pathname === '/';
 
     const handleScroll = () => {
       if (ticking) return;
@@ -33,11 +40,20 @@ export default function Navbar() {
         const delta = currentY - previousY;
         const nearTop = currentY < 96;
 
-        if (navRef.current) {
-          navRef.current.classList.toggle('scrolled', currentY > 50);
+        if (isHome) {
+          const heroSection = document.querySelector('.hero.hero-premium');
+          const heroBottom = heroSection
+            ? heroSection.offsetTop + heroSection.offsetHeight - 80
+            : 120;
+          const nextTransparent = currentY < heroBottom;
+          setIsHeroTransparent((prev) => (prev === nextTransparent ? prev : nextTransparent));
+        } else {
+          setIsHeroTransparent((prev) => (prev ? false : prev));
         }
 
-        if (mobileOpen) {
+        if (!isHome) {
+          setNavHidden(false);
+        } else if (mobileOpen) {
           setNavHidden(false);
         } else if (nearTop || delta < -6) {
           setNavHidden(false);
@@ -50,17 +66,15 @@ export default function Navbar() {
       });
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [mobileOpen]);
+  }, [location.pathname, mobileOpen]);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setLoginOpen(false);
-      }
-      if (contactRef.current && !contactRef.current.contains(e.target)) {
-        setContactOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -70,17 +84,16 @@ export default function Navbar() {
   const navLinks = [
     { to: '/about', label: 'About' },
     { to: '/services', label: 'Services' },
-    { to: '/team', label: 'Team' },
     { to: '/careers', label: 'Careers' },
   ];
 
   return (
     <nav 
-      className={`navbar ${location.pathname === '/' ? 'opacity-0 -translate-y-5 pointer-events-none' : ''} ${navHidden ? 'nav-hidden' : ''}`}
+      className={`navbar ${isHomePage ? 'opacity-0 -translate-y-5 pointer-events-none' : ''} ${isHeroTransparent && isHomePage ? 'home-glass' : 'scrolled'} ${navHidden && isHomePage ? 'nav-hidden' : ''}`}
       ref={navRef}
     >
       <Link to="/" className="nav-logo">
-        <img src="/logo.svg" alt="Lineal Edge" className="nav-logo-img" />
+        <img src="/Extra  Logo With Tagline and AMFI-1.svg" alt="Lineal Edge" className="nav-logo-img" />
       </Link>
 
       {/* Desktop Nav */}
@@ -95,53 +108,19 @@ export default function Navbar() {
           </Link>
         ))}
 
-        {/* Contact Dropdown */}
-        <div
-          className="login-dropdown relative flex items-center"
-          ref={contactRef}
-          onMouseEnter={() => setContactOpen(true)}
-          onMouseLeave={() => setContactOpen(false)}
+        <div className="relative flex items-center"
+          onClick={() => {
+            if (mobileOpen) {
+              setMobileOpen(false);
+            }
+          }}
         >
           <Link
             to="/contact"
-            className={`nav-link flex items-center ${location.pathname === '/contact' ? 'active' : ''}`}
-            onClick={(e) => {
-              if (window.innerWidth < 1024) { e.preventDefault(); setContactOpen(!contactOpen); }
-            }}
+            className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`}
           >
             Contact
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ marginLeft: 6 }}>
-              <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
           </Link>
-          {contactOpen && (
-            <div className="login-menu">
-               <div className="login-menu-inner">
-                 <Link to="/faq" className="login-menu-item">
-                    <div className="login-icon">
-                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                           <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
-                       </svg>
-                    </div>
-                    <div>
-                      <span className="login-menu-title">FAQs</span>
-                      <span className="login-menu-desc">Find answers quickly</span>
-                    </div>
-                 </Link>
-                 <Link to="/disclosure" className="login-menu-item">
-                    <div className="login-icon">
-                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
-                       </svg>
-                    </div>
-                    <div>
-                      <span className="login-menu-title">Disclosure</span>
-                      <span className="login-menu-desc">Read our policies</span>
-                    </div>
-                 </Link>
-               </div>
-            </div>
-          )}
         </div>
 
         {/* Login dropdown */}

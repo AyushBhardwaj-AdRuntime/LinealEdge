@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import SubscribeBand from '../components/SubscribeBand';
+import PageHeader from '../components/PageHeader';
 
 const teamMembers = [
   {
@@ -21,15 +22,10 @@ export default function TeamPage() {
 
   return (
     <main className="page-content teamx-page">
-      <section className="teamx-hero">
-        <div className="teamx-container">
-          <p className="teamx-breadcrumb">Home &gt; Team</p>
-          <h1 className="teamx-title">Meet Our Leadership</h1>
-          <p className="teamx-subtitle">
-            A focused senior team helping clients move from uncertainty to confidence through strategy, execution, and trusted financial guidance.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Meet Our Leadership"
+        description="A focused senior team helping clients move from uncertainty to confidence through strategy, execution, and trusted financial guidance."
+      />
 
       <section className="teamx-section">
         <div className="teamx-container">

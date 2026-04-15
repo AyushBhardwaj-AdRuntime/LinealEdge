@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import SubscribeBand from '../components/SubscribeBand';
+import PageHeader from '../components/PageHeader';
 
 const highlights = [
   {
@@ -23,6 +24,11 @@ export default function AboutPage() {
 
   return (
     <main className="page-content">
+      <PageHeader
+        title="Who We Are"
+        description="With years of experience and a results-focused approach, we empower businesses to navigate complexity and achieve their goals."
+      />
+
       <section className="aboutx-shell aboutx-intro">
         <div className="aboutx-grid aboutx-grid-top">
           <div className="aboutx-image-wrap">

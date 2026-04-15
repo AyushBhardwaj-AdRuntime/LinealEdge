@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SubscribeBand from '../components/SubscribeBand';
+import PageHeader from '../components/PageHeader';
 
 const positions = [
   { title: 'Associate Consultant', city: 'New York', locationType: 'Hybrid' },
@@ -15,6 +16,11 @@ export default function CareersPage() {
 
   return (
     <main className="careers-premium-page">
+      <PageHeader
+        title="Build Your Career With Us"
+        description="Join a team focused on practical impact, professional growth, and long-term client success."
+      />
+
       {/* HERO SECTION - 2 Column Layout with Stats Ribbon */}
       <section className="careers-hero">
         <div className="careers-container">
@@ -47,30 +53,6 @@ export default function CareersPage() {
                 alt="Professionals collaborating in a modern office"
                 className="careers-hero-image"
               />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CULTURE SECTION - Transform Your Career */}
-      <section className="careers-culture">
-        <div className="careers-container">
-          <div className="careers-culture-grid">
-            <div className="careers-culture-image-wrapper">
-              <img 
-                src="/meeting-placeholder.svg"
-                alt="Corporate architectural details"
-                className="careers-culture-image"
-              />
-            </div>
-            <div className="careers-culture-text">
-              <h2 className="careers-culture-title">Transform Your Career</h2>
-              <blockquote className="careers-trust-quote">
-                "They embrace our <strong>Radically Human</strong> approach by putting people first in everything they do."
-              </blockquote>
-              <p className="careers-culture-body">
-                The people who thrive here are those driven to build a meaningful career, not just earn a paycheck. Your journey here is not just about what you can do today, it is about who you can become in the right environment.
-              </p>
             </div>
           </div>
         </div>

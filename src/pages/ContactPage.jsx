@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SubscribeBand from '../components/SubscribeBand';
+import PageHeader from '../components/PageHeader';
 
 function CardIcon({ type }) {
   if (type === 'location') {
@@ -68,20 +69,10 @@ export default function ContactPage() {
 
   return (
     <main className="contactv2-page">
-      <section className="contactv2-hero">
-        <div className="contactv2-container">
-          <div className="contactv2-brand-lockup" aria-label="Lineal Edge brand">
-            <img src="/logo.svg" alt="Lineal Edge" className="contactv2-brand-logo" />
-            <div className="contactv2-brand-copy">
-              <p className="contactv2-brand-tagline">Legacy Personal Finance Solutions</p>
-              <p className="contactv2-brand-reg">AMFI-Registered Mutual Fund Distributor | ARN-342205</p>
-            </div>
-          </div>
-          <p className="contactv2-breadcrumb">Home &gt; Contact us</p>
-          <h1 className="contactv2-title">Get In Touch</h1>
-          <p className="contactv2-subtitle">We Look Forward to Connecting With You</p>
-        </div>
-      </section>
+      <PageHeader
+        title="Get In Touch"
+        description="We look forward to connecting with you."
+      />
 
       <section className="contactv2-info-wrap">
         <div className="contactv2-container">

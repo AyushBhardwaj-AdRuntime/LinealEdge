@@ -9,7 +9,7 @@ export default function Footer() {
         {/* Brand column */}
         <div className="footer-brand">
           <Link to="/">
-            <img src="/logo.svg" alt="Lineal Edge" className="footer-logo" />
+            <img src="/Extra  Logo With Tagline and AMFI-1.png" alt="Lineal Edge" className="footer-logo" />
           </Link>
           <p className="footer-tagline">
             Structure. Strategy. Success.
@@ -74,7 +74,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="footer-bottom">
         <span className="footer-copy">© {new Date().getFullYear()} Lineal Edge. All rights reserved.</span>
         <div className="footer-bottom-links">

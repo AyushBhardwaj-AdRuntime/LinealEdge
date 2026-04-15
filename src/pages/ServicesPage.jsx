@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PageHeader from '../components/PageHeader';
 
 export default function ServicesPage() {
   const [activeService, setActiveService] = useState('consulting');
@@ -55,12 +56,6 @@ export default function ServicesPage() {
     },
   ];
 
-  const awards = [
-    'Innovative Leadership in Consulting',
-    'Global Consulting Excellence',
-    'Management Consulting Firm of the Year',
-  ];
-
   const activeIndex = Math.max(
     0,
     services.findIndex((service) => service.id === activeService)
@@ -74,15 +69,10 @@ export default function ServicesPage() {
 
   return (
     <main className="services-premium-page">
-      <header className="services-hero">
-        <div className="services-container">
-          <p className="services-breadcrumb">Home &gt; Services</p>
-          <h1 className="services-hero-title">Comprehensive Business Consulting</h1>
-          <p className="services-hero-subtitle">
-            We help organizations redefine their direction, and improve performance. Our consultants bring deep industry knowledge.
-          </p>
-        </div>
-      </header>
+      <PageHeader
+        title="Comprehensive Business Consulting"
+        description="We help organizations redefine their direction, and improve performance. Our consultants bring deep industry knowledge and a results-oriented mindset."
+      />
 
       <nav className="services-nav">
         <div className="services-container services-nav-flex">
@@ -137,54 +127,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="services-growth-band">
-        <div className="services-container services-growth-inner">
-          <h3 className="services-growth-title">Driving Growth Through Strategic Clarity</h3>
-          <Link to="/contact" className="services-growth-cta arrow-hover-cta">
-            <span className="arrow-hover-label">Contact Us</span>
-          </Link>
-        </div>
-      </section>
-
-      <section className="services-awards-band">
-        <div className="services-container">
-          <div className="services-awards-grid">
-            <div className="services-award-item">
-              <span className="services-award-year">2024</span>
-              <span className="services-award-meta">Angies List</span>
-              <span className="services-award-meta">Super Service Award</span>
-            </div>
-            {awards.map((award) => (
-              <div key={award} className="services-award-item services-award-item-featured">
-                <h4 className="services-award-title">{award}</h4>
-                <p className="services-award-subtitle">Management Consulting Firm of the Year</p>
-              </div>
-            ))}
-          </div>
-
-          <p className="services-trust-strip">Fortune 500 Professionals Trust Lineal Edge CPA</p>
-        </div>
-      </section>
-
-      <section className="services-newsletter-band">
-        <div className="services-container">
-          <h3 className="services-newsletter-title">Stay Ahead. Subscribe for Expert Insights.</h3>
-          <form className="services-newsletter-form" onSubmit={(event) => event.preventDefault()}>
-            <input
-              type="email"
-              className="services-newsletter-input"
-              placeholder="Email"
-              aria-label="Email"
-            />
-            <button type="submit" className="services-newsletter-button">
-              Subscribe <span className="services-arrow">&rarr;</span>
-            </button>
-            <p className="services-newsletter-copy">
-              You can unsubscribe at any time using the link in the footer of our emails. View our Privacy Policy.
-            </p>
-          </form>
-        </div>
-      </section>
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SubscribeBand from '../components/SubscribeBand';
+import PageHeader from '../components/PageHeader';
 
 const faqData = [
   {
@@ -56,13 +57,10 @@ export default function FAQPage() {
 
   return (
     <main className="page-content">
-      <section className="page-hero compact">
-        <div className="page-hero-bg" />
-        <div className="page-hero-inner">
-          <div className="page-label"><div className="label-line" /><span className="label-text">FAQs</span></div>
-          <h1 className="page-hero-title">Frequently asked <span className="text-green">questions</span></h1>
-        </div>
-      </section>
+      <PageHeader
+        title="Frequently Asked Questions"
+        description="Find quick answers about our services, onboarding, advisory approach, and account support."
+      />
 
       <section className="content-section">
         <div className="section-inner narrow">
